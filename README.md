@@ -1,5 +1,7 @@
 # 多 · 快 · 好 · 省
 
+![多快好省建设 AGI](assets/more-faster-better-economical-hero.jpg)
+
 一个面向 AI Agent 的工程原则 Skill，用于项目规则制定、架构设计、开发规划和代码审查。
 
 ## 核心原则
