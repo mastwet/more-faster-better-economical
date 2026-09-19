@@ -2,125 +2,67 @@
 name: more-faster-better-economical
 description: Apply More, Fast, Good, and Frugal engineering principles when defining project rules, choosing architecture, planning implementation, or reviewing changes. Use to resolve tradeoffs among composability, runtime performance, maintainability, and total cost.
 ---
-
 # More · Fast · Good · Frugal
 
-Build useful capability with the smallest coherent system that meets the product contract. Treat these principles as engineering judgment, not a prescribed technology stack or mandatory ceremony.
+Build capability with smallest coherent system meeting product contract. Decision criteria, not workflow. Apply independently or inside Supermanagement/Superpowers. Do not activate either merely to apply this skill.
+
+## Scope, precedence
+
+Apply to work already required. Simple edits leaving behavior, interfaces, state, dependencies unchanged need focused checks, not full assessment. Unrelated questions, ordinary prose edits do not trigger this skill.
+
+Follow host instruction hierarchy, authorization boundaries. Within limits: explicit authorized user requirements > repository constraints > this skill defaults. Surface material conflicts. Change repository constraints only when explicitly authorized. General request to work faster not waive mandatory gates.
+
+Correctness, security, data integrity, agreed product contract = acceptance conditions. Make intentional contract changes explicit. Exceptions below concern design defaults, never these conditions. Among acceptable solutions prefer minimum total lifecycle cost, then speed within that frugal design.
 
 ## Four principles
 
-### More — Less is more
+Use defaults routinely. Explain exceptions only when consequential. Evidence = confirmed requirement, inspected behavior, or measurement. Fields are decision aids, not form to fill per task.
 
-Use simple, composable architecture so users can shape capabilities through their creativity instead of being confined to predefined workflows.
+**More: Less is more**
+Default: small cohesive capabilities, clear boundaries, useful defaults, meaningful composition. Not fixed workflows or feature counts.
+Exception: confirmed variation or independently supplied capabilities justify targeted extension interface. Not automatically plugin framework.
+Evidence: name actual consumer, requirement, or variation boundary supports. Hypothetical future flexibility insufficient.
 
-- Prefer a small set of cohesive capabilities with clear inputs, outputs, and boundaries.
-- Separate reusable mechanisms from product-specific policy when a real variation requires it.
-- Provide useful defaults and allow meaningful composition without making users assemble everything themselves.
-- Introduce extension points at demonstrated variation boundaries. Composability does not require a plugin framework, microservices, or a universal abstraction.
-- Evaluate capability by useful outcomes enabled, not feature counts, configuration counts, or abstraction layers.
+**Fast: Frugality before optimization**
+Default: keep execution paths direct. Cut unnecessary I/O, copying, allocation, repeated work before adding machinery.
+Exception: add caches, concurrency, or services when measurements or established runtime constraint show simpler approaches insufficient and benefits justify lifecycle costs.
+Evidence: relevant latency, throughput, memory, or startup measurements, or documented constraint. Label estimates. Invent neither targets nor performance gains.
 
-### Fast — Low overhead, focused delivery
+**Good: Lean development, accountable design**
+Default: keep code readable, work small. Clarify scope, boundaries, ownership, failure behavior, acceptance before consequential delegation. Resolve shared decisions before parallel work. Limit active work to review capacity.
+Exception: cross-component, persistence, concurrency, or security risks require broader design and verification than isolated changes.
+Evidence: behavior, failure-path, integration checks proportionate to actual risks, plus required gates. Supervisors retain architectural and end-to-end acceptance responsibility.
 
-Design for performance and execution speed with frugality as the first premise: lightweight and swift, like a feather. Keep runtime overhead low enough for the intended infrastructure role. Deliver efficiently through focused work and proportionate verification.
+**Frugal: Minimum sufficient total cost**
+Default: deliver requested behavior plus necessary implementation details only. Reuse or safely delete before adding code, dependencies, configuration, or process.
+Exception: extra machinery must address identified requirement or reduce total lifecycle cost versus viable alternatives.
+Evidence: account maintained LOC across solution, runtime, maintenance, operations, user effort, agent time/tokens. LOC = design pressure, not quota. Preserve readability, meaningful verification.
 
-- Identify relevant latency, throughput, memory, startup, or resource constraints before optimizing. Do not invent numerical targets.
-- Keep common execution paths direct; avoid unnecessary I/O, serialization, copying, allocation, and repeated work where they materially affect the goal.
-- Prefer simple architectural reductions in work before introducing caches, concurrency, or distributed components.
-- Optimize measured bottlenecks or clearly established constraints. Report estimates as estimates.
-- Inspect the relevant context, complete a coherent change, and verify its actual risks. Stop expanding validation once sufficient evidence exists and required gates pass.
+## Red flags
 
-### Good — Lean development, lean management, coherent architecture
+Investigate signals. Not automatic findings:
 
-Practice lean development and lean project management. Top-level designers and agent supervisors are accountable for turning user value into a clear architecture, focused work, and verified outcomes. Treat maintainable code as a craft and preserve the product contract.
+- Performance complexity without measurements or established constraint.
+- Hypothetical abstractions, or coupling blocking required composition.
+- Unrequested features, configuration growth without concrete need, unrelated cleanup.
+- Apparent LOC savings hiding complexity in dependencies, generated code, user effort.
+- Contract regressions, silent failures, claims beyond available verification.
+- Duplicated plans, mandatory delegation, process without demonstrated benefit.
 
-- Before assigning consequential work, clarify the intended value, scope, architectural boundaries, and acceptance criteria at the level needed to prevent implementers from guessing.
-- Keep work small and complete; limit work in progress according to actual dependencies and review capacity. Resolve shared design questions before they cause parallel rework.
-- Supervise against user outcomes and integration evidence. Detect scope drift, duplicated effort, and unnecessary complexity early; correct the plan instead of adding reporting ceremony.
-- Use short feedback loops and proportionate review. The designer or supervisor remains responsible for architectural coherence and end-to-end acceptance when work is delegated.
+Complexity signals, not automatic violations. Inspect hand-maintained code around thresholds: function nesting >4; conditionals (if/ternary) >8 per function; parameters >6; classes >20 methods; files >600 lines or sprawling exports with mixed responsibilities; duplicated blocks 10+ lines occurring twice; direct access to internals of >3 unrelated objects.
 
-- Make responsibilities, dependency direction, state ownership, and failure behavior explicit where they matter.
-- Keep code readable and locally understandable. Prefer domain clarity to cleverness or artificial uniformity.
-- Preserve agreed behavior, interfaces, compatibility, security, and data integrity. Make intentional contract changes explicit.
-- Handle failures at appropriate boundaries; avoid silent fallback that hides broken behavior.
-- Verify externally meaningful behavior and concrete failure risks. Test implementation details only when they are themselves a necessary invariant.
-- Distinguish implemented, verified, and unverified outcomes. State material limitations without claiming unsupported certainty.
+Report finding only when signal reveals concrete comprehension, coupling, change, or correctness risk. Prefer smallest in-scope fix. Do not split code, wrap parameters, or invent abstractions merely to satisfy counts. Respect repository-specific thresholds. Account for generated code, declarative tables, intentional repetition. Routine work: inspect only change plus direct impact. Broaden review only when requested.
 
-### Frugal — Minimum sufficient total cost
+## Output contracts
 
-Focus on user value. Use the least total code, complexity, dependencies, and process necessary to fulfill the user's actual requirements.
+Use only relevant format inside existing workflow:
 
-- Do not add features outside the user's requested or clearly implied scope. Useful-looking extras remain suggestions until requested; necessary implementation details are not extra product features.
-- Minimize total maintained lines of code (LOC) across the solution, including helpers, adapters, configuration, and tests. Prefer reuse, deletion, and simpler designs; moving code to another file does not count as reducing it.
-- Treat LOC as a design pressure, not a quota: preserve readability, required behavior, and meaningful verification. Do not hide complexity in generated code or dependencies just to improve the count.
+**Project rules:** normally 5–10 actionable project-specific rules. Fewer when sufficient. Read existing instructions and relevant architecture first. State defaults, exception conditions, evidence where applicable. Modify only established or user-selected instruction file when requested. Keep one authoritative version.
 
-- Consider lifecycle cost: implementation, runtime resources, maintenance, operations, user effort, and agent time/tokens.
-- Reuse existing capabilities when they fit. Compare a dependency's ongoing burden with the real cost of maintaining a custom implementation.
-- Add abstractions, dependencies, services, configuration, and process only when they solve an identified problem.
-- Prefer reversible, incremental changes. Avoid speculative generalization and unrelated cleanup.
-- Use tools and delegation when their expected benefit exceeds coordination and context costs; do not make them mandatory for simple work.
-- Remove obsolete machinery made unnecessary by the change when it is safe and in scope.
-- Do not minimize line count by making code harder to understand, omitting necessary behavior, or shifting hidden work onto users.
+**Design:** one paragraph: simplest viable choice, material alternative, tradeoff, supporting evidence. Summarizes decision, not entire architecture. Keep interfaces, ownership, failure behavior, acceptance details in existing plan. No parallel paperwork.
 
-## Resolve tradeoffs
+**Review:** findings ordered by impact. Each: location, evidence, consequence, smallest useful correction. No substantiated issues = say so. Do not invent findings or unrelated rewrites.
 
-Use this order of reasoning, not a numerical score:
+Distinguish implemented, verified, unverified outcomes. Stop expanding validation when acceptance evidence sufficient, concrete risks covered, required gates pass. Disclose remaining limitations.
 
-1. Establish the requested outcome and non-negotiable constraints. Correctness, security, data integrity, and agreed product contracts define acceptable solutions.
-2. Among acceptable solutions, prefer the lowest total lifecycle cost and smallest coherent design.
-3. Pursue speed within that frugal design: reduce work, layers, and overhead first. Add complexity only when necessary to meet an actual runtime requirement and the benefit justifies its total cost; speculative speed gains do not override frugality.
-4. Preserve useful composition at real variation boundaries; avoid paying for hypothetical future flexibility.
-
-When options have materially different consequences, explain the simplest viable option, the alternative, and the evidence behind the choice. A short paragraph is usually sufficient. Do not generate an alternatives document for routine decisions.
-
-Examples:
-- A simple direct implementation is preferable to an unneeded plugin framework. A proven need for independently supplied capabilities may justify a small extension interface.
-- A mature dependency can be more frugal than a shorter custom implementation if it substantially reduces maintenance and correctness risks.
-- A cache is justified when evidence shows it is needed and invalidation is manageable; it is not a default architecture component.
-- A small copy edit needs focused inspection. A persistence or concurrency change may require failure-path and integration checks.
-
-## Apply to the current task
-
-### Define or update project rules
-
-Read the existing project instructions and relevant architecture first. Preserve project-specific requirements and the user's scope.
-
-Translate the four principles into a concise set of actionable rules grounded in that project:
-- What behavior or boundary must be preserved?
-- What is the default design choice?
-- What concrete condition justifies an exception?
-- What evidence would establish success?
-
-Use only applicable questions; do not turn them into a form for every rule. Avoid generic slogans, duplicated guidance, arbitrary quotas, and requirements that cannot affect a decision.
-
-When asked to write project instructions, update the repository's established instruction file or the user-selected destination. Do not silently install global rules or modify unrelated projects. Keep one authoritative version of each rule.
-
-### Design and plan
-
-Apply these principles to the architecture and the plan already required by the task. For consequential choices, make component boundaries, contract changes, costs, and acceptance evidence clear enough for an implementer.
-
-Do not force every task through epics, stories, DAGs, design documents, or approval rounds. If a planning workflow is already in use, incorporate the criteria there instead of creating parallel artifacts.
-
-### Implement and review
-
-Choose the smallest complete change that meets the outcome. Review for:
-- Unnecessary coupling or restrictions on useful composition.
-- Material runtime waste or unsupported performance claims.
-- Contract regressions, unclear ownership, or unhandled failure behavior.
-- Unrequested features, avoidable total LOC, or complexity, dependencies, configuration, and process without a demonstrated benefit.
-- Plans or delegated work lacking clear scope, necessary architecture decisions, or outcome-based acceptance.
-
-Report concrete findings with their impact and the smallest useful correction. Do not manufacture findings, demand unrelated rewrites, or require a four-part report when there is nothing meaningful to discuss.
-
-## Cooperation and precedence
-
-This skill supplies decision criteria. It can work independently or alongside Supermanagement for planning and Superpowers for execution; neither is a dependency.
-
-Honor applicable instruction priority, explicit user choices, repository constraints, and authorization boundaries. This skill does not grant itself higher priority by calling its principles foundational.
-
-Do not copy another workflow into this skill or trigger an entire workflow merely to apply these principles. Incorporate them into the work already needed.
-
-## Evolve without accumulating bureaucracy
-
-Add a rule when a recurring decision or demonstrated failure reveals a useful missing constraint. Prefer improving or replacing an existing rule to appending another one. Remove redundant or obsolete rules.
-
-Keep the four principles stable and project-specific mechanisms local. Judge the skill by better decisions and verifiable outcomes, not by its length.
+Replace or remove rules before appending more. Add rules for recurring decisions or demonstrated failures, not to grow this skill.
