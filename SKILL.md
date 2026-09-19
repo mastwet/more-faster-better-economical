@@ -21,7 +21,7 @@ Use simple, composable architecture so users can shape capabilities through thei
 
 ### Fast — Low overhead, focused delivery
 
-Keep runtime overhead low enough for the intended infrastructure role. Deliver efficiently through focused work and proportionate verification.
+Design for performance and execution speed with frugality as the first premise: lightweight and swift, like a feather. Keep runtime overhead low enough for the intended infrastructure role. Deliver efficiently through focused work and proportionate verification.
 
 - Identify relevant latency, throughput, memory, startup, or resource constraints before optimizing. Do not invent numerical targets.
 - Keep common execution paths direct; avoid unnecessary I/O, serialization, copying, allocation, and repeated work where they materially affect the goal.
@@ -29,9 +29,14 @@ Keep runtime overhead low enough for the intended infrastructure role. Deliver e
 - Optimize measured bottlenecks or clearly established constraints. Report estimates as estimates.
 - Inspect the relevant context, complete a coherent change, and verify its actual risks. Stop expanding validation once sufficient evidence exists and required gates pass.
 
-### Good — Coherent architecture, verifiable outcomes
+### Good — Lean development, lean management, coherent architecture
 
-Treat clear architecture and maintainable code as a craft. Preserve the product contract and produce evidence that the result works.
+Practice lean development and lean project management. Top-level designers and agent supervisors are accountable for turning user value into a clear architecture, focused work, and verified outcomes. Treat maintainable code as a craft and preserve the product contract.
+
+- Before assigning consequential work, clarify the intended value, scope, architectural boundaries, and acceptance criteria at the level needed to prevent implementers from guessing.
+- Keep work small and complete; limit work in progress according to actual dependencies and review capacity. Resolve shared design questions before they cause parallel rework.
+- Supervise against user outcomes and integration evidence. Detect scope drift, duplicated effort, and unnecessary complexity early; correct the plan instead of adding reporting ceremony.
+- Use short feedback loops and proportionate review. The designer or supervisor remains responsible for architectural coherence and end-to-end acceptance when work is delegated.
 
 - Make responsibilities, dependency direction, state ownership, and failure behavior explicit where they matter.
 - Keep code readable and locally understandable. Prefer domain clarity to cleverness or artificial uniformity.
@@ -42,7 +47,11 @@ Treat clear architecture and maintainable code as a craft. Preserve the product 
 
 ### Frugal — Minimum sufficient total cost
 
-Use the least code, complexity, dependencies, and process necessary to achieve the goal.
+Focus on user value. Use the least total code, complexity, dependencies, and process necessary to fulfill the user's actual requirements.
+
+- Do not add features outside the user's requested or clearly implied scope. Useful-looking extras remain suggestions until requested; necessary implementation details are not extra product features.
+- Minimize total maintained lines of code (LOC) across the solution, including helpers, adapters, configuration, and tests. Prefer reuse, deletion, and simpler designs; moving code to another file does not count as reducing it.
+- Treat LOC as a design pressure, not a quota: preserve readability, required behavior, and meaningful verification. Do not hide complexity in generated code or dependencies just to improve the count.
 
 - Consider lifecycle cost: implementation, runtime resources, maintenance, operations, user effort, and agent time/tokens.
 - Reuse existing capabilities when they fit. Compare a dependency's ongoing burden with the real cost of maintaining a custom implementation.
@@ -58,7 +67,7 @@ Use this order of reasoning, not a numerical score:
 
 1. Establish the requested outcome and non-negotiable constraints. Correctness, security, data integrity, and agreed product contracts define acceptable solutions.
 2. Among acceptable solutions, prefer the lowest total lifecycle cost and smallest coherent design.
-3. Meet the actual runtime requirements with proportionate complexity. A measured performance constraint can justify more code or a dependency.
+3. Pursue speed within that frugal design: reduce work, layers, and overhead first. Add complexity only when necessary to meet an actual runtime requirement and the benefit justifies its total cost; speculative speed gains do not override frugality.
 4. Preserve useful composition at real variation boundaries; avoid paying for hypothetical future flexibility.
 
 When options have materially different consequences, explain the simplest viable option, the alternative, and the evidence behind the choice. A short paragraph is usually sufficient. Do not generate an alternatives document for routine decisions.
@@ -97,7 +106,8 @@ Choose the smallest complete change that meets the outcome. Review for:
 - Unnecessary coupling or restrictions on useful composition.
 - Material runtime waste or unsupported performance claims.
 - Contract regressions, unclear ownership, or unhandled failure behavior.
-- Complexity, dependencies, configuration, or process without a demonstrated benefit.
+- Unrequested features, avoidable total LOC, or complexity, dependencies, configuration, and process without a demonstrated benefit.
+- Plans or delegated work lacking clear scope, necessary architecture decisions, or outcome-based acceptance.
 
 Report concrete findings with their impact and the smallest useful correction. Do not manufacture findings, demand unrelated rewrites, or require a four-part report when there is nothing meaningful to discuss.
 
